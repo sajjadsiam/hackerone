@@ -22,7 +22,9 @@ interface ReportsResponse {
   };
 }
 
-export default function ReportsPage() {
+import { Suspense } from 'react';
+
+function ReportsPageContent() {
   const searchParams = useSearchParams();
   const [data, setData] = useState<ReportsResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -499,5 +501,13 @@ export default function ReportsPage() {
         </>
       )}
     </div>
+  );
+}
+
+export default function ReportsPage() {
+  return (
+    <Suspense>
+      <ReportsPageContent />
+    </Suspense>
   );
 }
